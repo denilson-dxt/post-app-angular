@@ -1,15 +1,14 @@
-<mat-card class="example-card">
+<mat-card class="mat-card-container m-2">
   <mat-card-header>
     <div mat-card-avatar class="example-header-image"></div>
     <mat-card-title><h2><strong>Title: {{ post.title }}</strong></h2></mat-card-title>
-    <mat-card-subtitle>Dog Breed</mat-card-subtitle>
   </mat-card-header>
   <img mat-card-image src="{{post.image}}" alt="Photo of a Shiba Inu">
   <mat-card-content>
     <p>{{post.content}}</p>
   </mat-card-content>
   <mat-card-actions>
-    <button (click)="updatePost()" mat-button>Update</button>
-    <button (click)="deletePost()" mat-button>Delete</button>
+    <button (click)="updatePost()" mat-raised-button color="primary">Update</button>
+    <button  (click)="deletePost()" mat-raised-button color="warn">Delete</button>
   </mat-card-actions>
 </mat-card>
