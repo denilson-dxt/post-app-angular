@@ -1,0 +1,23 @@
+<div>
+    <form>
+      <div class="text-center mb-3">
+        <p>Sign up:</p>
+  
+      </div>
+  
+      <!-- Name input -->
+      <div class="form-floating mb-4">
+        <input placeholder="###@..." name="username" [(ngModel)]="signInData.username" type="text" id="registerName" class="form-control" />
+        <label class="form-label" for="registerName">Username</label>
+      </div>
+     
+
+      <div class="form-floating mb-4">
+        <input name="password" [(ngModel)]="signInData.password"  type="password" id="registerPassword" class="form-control" />
+        <label class="form-label" for="registerPassword">Password</label>
+      </div>
+      <!-- Submit button -->
+      <button (click)="onSubmit()" type="submit" class="btn btn-primary btn-block mb-3">Sign in</button>
+    </form>
+  </div>
+  

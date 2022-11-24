@@ -1,0 +1,38 @@
+<div>
+  <form>
+    <div class="text-center mb-3">
+      <p>Sign up:</p>
+
+    </div>
+
+    <!-- Name input -->
+    <div class="form-floating mb-4">
+      <input placeholder="###@..." name="email" [(ngModel)]="signUp.email" type="text" id="registerName" class="form-control" />
+      <label class="form-label" for="registerName">Email</label>
+    </div>
+    {{signUp.email}}
+    <!-- Username input -->
+    <div class="form-floating mb-4">
+      <input name="userName" [(ngModel)]="signUp.userName"  type="text" id="registerUsername" class="form-control" />
+      <label class="form-label" for="registerUsername">Username</label>
+    </div>
+
+    <!-- Email input -->
+    <div class="form-floating mb-4">
+      <input name="fullName" [(ngModel)]="signUp.fullName"  type="email" id="registerEmail" class="form-control" />
+      <label class="form-label" for="registerEmail">FullName</label>
+    </div>
+
+    <!-- Password input -->
+    <div class="form-floating mb-4">
+      <input name="phoneNumber" [(ngModel)]="signUp.phoneNumber"  type="text" id="phoneNumber" class="form-control" />
+      <label class="form-label" for="phoneNumber">Phone Number</label>
+    </div>
+    <div class="form-floating mb-4">
+      <input name="password" [(ngModel)]="signUp.password"  type="password" id="registerPassword" class="form-control" />
+      <label class="form-label" for="registerPassword">Password</label>
+    </div>
+    <!-- Submit button -->
+    <button (click)="onSubmit()" type="submit" class="btn btn-primary btn-block mb-3">Sign up</button>
+  </form>
+</div>

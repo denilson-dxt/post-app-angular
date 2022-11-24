@@ -1,0 +1,45 @@
+
+<div
+  class="modal"
+  tabindex="-1"
+  role="dialog"
+  [ngStyle]="{'display':displayStyle}">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">GeeksForGeeks</h4>
+      </div>
+      <div class="modal-body">
+
+        <form>
+          <!-- Name input -->
+          <div class="form-outline mb-4">
+            <input name="title" type="text" id="title" [(ngModel)]="data.title" class="form-control" />
+            <label class="form-label" for="title">Title</label>
+          </div>
+          <div class="form-outline mb-4">
+            <input name="image" type="text" id="image" [(ngModel)]="data.image" class="form-control" />
+            <label class="form-label" for="image">Image</label>
+          </div>
+
+          <!-- Message input -->
+          <div class="form-outline mb-4">
+            <textarea name="content" [(ngModel)]="data.content" class="form-control" id="content" rows="4"></textarea>
+            <label  class="form-label" for="content" >Content</label>
+          </div>
+
+          <!-- Submit button -->
+          <button type="submit" (click)="onSubmit()" class="btn btn-primary btn-block mb-4">{{creating ? "Create": "Update"}}</button>
+        </form>
+
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger"
+                (click)="closePopup()">
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
