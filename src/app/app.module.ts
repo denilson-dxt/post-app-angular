@@ -24,6 +24,7 @@ import {EffectsModule} from "@ngrx/effects";
 import {PostsEffects} from "./store/effects/post.effects";
 import {reducers} from "./store/reducers";
 import { PostFormComponent } from './components/post-form/post-form.component';
+import { NotificationComponent } from './components/notification/notification.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { PostFormComponent } from './components/post-form/post-form.component';
     ListPostsComponent,
     PostItemComponent,
     CreatePostComponent,
-    PostFormComponent
+    PostFormComponent,
+    NotificationComponent
   ],
   imports: [
     BrowserModule,

@@ -3,6 +3,7 @@ import {ICreatePost} from "../../models/ICreatePost";
 import {Store} from "@ngrx/store";
 import {IAppState} from "../../store/reducers";
 import {IPost} from "../../models/post";
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-post-form',
@@ -18,7 +19,7 @@ export class PostFormComponent implements OnInit {
   onPopupClose = new EventEmitter();
 
   @Input()
-  displayStyle:string = "none";
+  displayStyle:string = "block";
 
   @Input()
   creating!:boolean;
@@ -29,17 +30,30 @@ export class PostFormComponent implements OnInit {
   @Input()
   data!:ICreatePost;
   submitText:string = this.creating ? "Update" : "Create";
+
+  postFormGroup!:FormGroup;
   constructor(private store:Store<IAppState>) { }
 
   ngOnInit(): void {
+    this.initializePostForm();
     console.log(this.data)
     if(this.post != null){
       this.data = {id: this.post.id, title:this.post.title, content: this.post.content, image: this.post.image}
     }
   }
 
+  initializePostForm(){
+    this.postFormGroup = new FormGroup({
+      title: new FormControl("", Validators.required),
+      content: new FormControl("", Validators.required),
+      image: new FormControl("", Validators.required)
+    });
+  }
+
   onSubmit(){
-    this.onSubmitEvent.emit(this.data);
+    console.log(this.postFormGroup.value);
+    
+    this.onSubmitEvent.emit(this.postFormGroup.value);
   }
 
   closePopup(){

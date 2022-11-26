@@ -26,6 +26,9 @@ export class UserService {
     }
 
     return false;
-
+  }
+  isAuhorized(username:string):boolean{
+    const author = localStorage.getItem("username");
+    return author == username;
   }
 }

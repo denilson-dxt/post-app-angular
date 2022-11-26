@@ -15,7 +15,7 @@ export class HomeComponent implements OnInit {
   @Input()
   allPost:IPost[] = [];
   constructor(private postService:PostService, private store:Store<IAppState>) { }
-
+  
   ngOnInit(): void {
 
     this.store.dispatch(getPosts());

@@ -11,20 +11,20 @@
       </div>
       <div class="modal-body">
 
-        <form>
+        <form [formGroup]="postFormGroup">
           <!-- Name input -->
           <div class="form-outline mb-4">
-            <input name="title" type="text" id="title" [(ngModel)]="data.title" class="form-control" />
+            <input name="title" type="text" id="title" formControlName="title" class="form-control" />
             <label class="form-label" for="title">Title</label>
           </div>
           <div class="form-outline mb-4">
-            <input name="image" type="text" id="image" [(ngModel)]="data.image" class="form-control" />
+            <input name="image" type="text" id="image" formControlName="image" class="form-control" />
             <label class="form-label" for="image">Image</label>
           </div>
 
           <!-- Message input -->
           <div class="form-outline mb-4">
-            <textarea name="content" [(ngModel)]="data.content" class="form-control" id="content" rows="4"></textarea>
+            <textarea name="content" formControlName="content" class="form-control" id="content" rows="4"></textarea>
             <label  class="form-label" for="content" >Content</label>
           </div>
 

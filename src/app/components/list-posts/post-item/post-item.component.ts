@@ -1,4 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import { UserService } from 'src/app/services/user.service';
 import {IPost} from "../../../models/post";
 
 @Component({
@@ -9,15 +10,18 @@ import {IPost} from "../../../models/post";
 export class PostItemComponent implements OnInit {
   @Input()
   post:IPost | any;
-  constructor() { }
-
+  
   @Output()
   onUpdatePost = new EventEmitter<IPost>();
-
+  
   @Output()
   onDeletePost = new EventEmitter<number>();
   ngOnInit(): void {
   }
+  
+  constructor(public userService:UserService) { }
+
+  
   updatePost(){
     this.onUpdatePost.emit(this.post);
   }

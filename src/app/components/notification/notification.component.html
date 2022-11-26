@@ -1,0 +1,11 @@
+<div [className]="background" style="min-width:320px;">
+    <div class="d-flex align-items-end justify-content-end">
+      <button class="btn-close" (click)="removeNotification()"></button>
+    </div>
+    <div>
+      <span>{{notification.title}}</span>
+      <p>
+        {{notification.message}}
+      </p>
+    </div>
+  </div>

@@ -13,7 +13,7 @@ import {ICreatePost} from "../../models/ICreatePost";
 })
 export class CreatePostComponent implements OnInit {
   @Input()
-  displayStyle="none";
+  displayStyle="block";
 
   data:ICreatePost = {title:"", content:"", image: ""};
 
@@ -24,15 +24,12 @@ export class CreatePostComponent implements OnInit {
   onPopupClose = new EventEmitter();
 
   @Input()
-  post?:ICreatePost;
+  actualPost:ICreatePost = {id: 0, title: "", content: "", image: ""};
 
   constructor(private service: PostService, private store:Store<IAppState>) { }
 
   ngOnInit(): void {
-    if(this.post){
-      this.data = this.post;
-      console.log(this.data)
-    }
+   
   }
   createPost(post:ICreatePost){
     console.log(post)
@@ -45,6 +42,9 @@ export class CreatePostComponent implements OnInit {
        this.onPostCreated.emit(data);
        this._clearForm();
      })*/
+  }
+  onPostFormSubmit(post:ICreatePost){
+    
   }
 
 

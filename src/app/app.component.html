@@ -1,3 +1,8 @@
-  <app-navegation></app-navegation>
-  <router-outlet ></router-outlet>
+<app-navegation></app-navegation>
+<router-outlet ></router-outlet>
 
+<div class="fixed-top p-4 margin-top-header" *ngIf="notifications.length > 0">
+  <div style="position: absolute; top: 0; right: 0;">
+    <app-notification *ngFor="let notification of notifications" [notification]="notification"></app-notification>
+  </div>
+</div>

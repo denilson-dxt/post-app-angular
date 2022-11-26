@@ -1,3 +1,1 @@
-<!--
-<app-post-form (onSubmitEvent)="createPost($event)" (onPopupClose)="close()" [displayStyle]="displayStyle" ></app-post-form>
--->
+<app-post-form [data]="actualPost"  [displayStyle]="displayStyle" (onSubmitEvent)="onPostFormSubmit($event)" ></app-post-form>
