@@ -1,14 +1,14 @@
 <mat-card class="mat-card-container m-2">
   <mat-card-header>
     <div mat-card-avatar class="example-header-image"></div>
-    <mat-card-title><h2><strong>Title: {{ post.title }}</strong></h2></mat-card-title>
+    <mat-card-title><h2><strong>{{ post.title }}</strong></h2></mat-card-title>
   </mat-card-header>
   <img mat-card-image src="{{post.image}}" alt="Photo of a Shiba Inu">
   <mat-card-content>
     <strong>Auhtor: </strong> {{post.userName}}
     <br>
     <strong>Creation date: </strong> {{post.creationdate | date}}
-    <p class="w-25"> <strong>Content: </strong> {{post.content}}</p>
+    <p class="w-100"> <strong>Content: </strong> {{post.content}}mf lskfhskdjh fisdjk fhisud hfsdjhf</p>
   </mat-card-content>
   <mat-card-actions *ngIf=" userService.isAuthenticated() && userService.isAuhorized(post.userName)">
     <button (click)="updatePost()" mat-raised-button color="primary">Update</button>
