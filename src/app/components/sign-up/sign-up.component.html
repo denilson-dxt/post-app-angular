@@ -31,7 +31,11 @@
       <input name="password" [(ngModel)]="signUp.password"  type="password" id="registerPassword" class="form-control" />
       <label class="form-label" for="registerPassword">Password</label>
     </div>
-    <!-- Submit button -->
-    <button (click)="onSubmit()" type="submit" class="btn btn-primary btn-block mb-3">Sign up</button>
+  
+    <div class="d-flex align-items-center">
+      <button (click)="onSubmit()" type="submit" class="btn btn-primary btn-block mt-0 mb-0 m-4 ms-0">Sign up</button>
+      <a class="" routerLink="../signin">Alread have an account</a>
+    
+    </div>
   </form>
 </div>
