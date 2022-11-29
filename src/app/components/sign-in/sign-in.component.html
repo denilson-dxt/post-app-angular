@@ -1,23 +1,31 @@
 <div class="w-100 d-flex h-100 align-items-center justify-content-center">
-    <form class="w-25">
-      <div class="text-center mb-3">
-        <p>Sign up:</p>
-  
-      </div>
-  
-      <!-- Name input -->
-      <div class="form-floating mb-4">
-        <input placeholder="###@..." name="username" [(ngModel)]="signInData.username" type="text" id="registerName" class="form-control" />
-        <label class="form-label" for="registerName">Username</label>
-      </div>
-     
+  <form class="w-25" [formGroup]="signInFormGroup" (ngSubmit)="onSubmit()" #formDir="ngForm">
+    <div class="text-center mb-3">
+      <h3>Sign up</h3>
+    </div>
 
-      <div class="form-floating mb-4">
-        <input name="password" [(ngModel)]="signInData.password"  type="password" id="registerPassword" class="form-control" />
-        <label class="form-label" for="registerPassword">Password</label>
+    <!-- Name input -->
+    <div *ngIf="loginError" class="bg-danger p-2 mb-2 text-light">
+      {{loginError}}
+    </div>
+    <div class="form-floating mb-4">
+      <input placeholder="###@..." name="username" formControlName="username" type="text" id="registerName"
+        class="form-control" />
+      <label class="form-label" for="registerName">Username</label>
+      <div *ngIf="userName.invalid && formDir.submitted">
+        <span *ngIf="userName.errors?.['required']" class="text-danger">UserName is required</span>
       </div>
-      <!-- Submit button -->
-      <button (click)="onSubmit()" type="submit" class="btn btn-primary btn-block mb-3">Sign in</button>
-    </form>
-  </div>
-  
+    </div>
+
+
+    <div class="form-floating mb-4">
+      <input name="password" formControlName="password" type="password" id="registerPassword" class="form-control" />
+      <label class="form-label" for="registerPassword">Password</label>
+      <div *ngIf="password.invalid && formDir.submitted">
+        <span class="text-danger" *ngIf="password.errors?.['required']" >Password is required</span>
+      </div>
+    </div>
+    <!-- Submit button -->
+    <button type="submit" class="btn btn-primary btn-block mb-3">Sign in</button>
+  </form>
+</div>

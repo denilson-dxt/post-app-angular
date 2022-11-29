@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UserService } from '../../services/user.service';
 
@@ -9,25 +10,40 @@ import { UserService } from '../../services/user.service';
 })
 export class SignInComponent implements OnInit {
 
-  signInData = {
-    username: '',
-    password: ''
-  }
-
+  loginError?:string;
+  signInFormGroup!:FormGroup;
   
   constructor(private userService:UserService, private router:Router) { }
 
   ngOnInit(): void {
+    this.signInFormGroup = new FormGroup({
+      username: new FormControl("", Validators.required),
+      password: new FormControl("", Validators.required)
+    });
   }
+  
   onSubmit():void{
-    this.userService.signIn(this.signInData.username, this.signInData.password).subscribe(data=>{
-      console.log(data);
+    if(this.signInFormGroup.invalid) return;
+    console.log(this.signInFormGroup.value);
+
+    
+    this.userService.signIn(this.signInFormGroup.value).subscribe(data=>{
       localStorage.setItem("token", data.token);
       localStorage.setItem("id", data.id);
       localStorage.setItem("fullname", data.fullname);
       localStorage.setItem("username", data.username);
       localStorage.setItem("email", data.email);
       this.router.navigate(["/home"]);
+    }, error=>{
+      this.loginError = error.error.errors;
+      
     });
+  }
+
+  get userName(){
+      return this.signInFormGroup.get("username")!;
+  }
+  get password(){
+    return this.signInFormGroup.get("password")!;
   }
 }

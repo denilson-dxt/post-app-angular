@@ -10,7 +10,7 @@
     <strong>Creation date: </strong> {{post.creationdate | date}}
     <p class="w-25"> <strong>Content: </strong> {{post.content}}</p>
   </mat-card-content>
-  <mat-card-actions *ngIf="userService.isAuhorized(post.userName)">
+  <mat-card-actions *ngIf=" userService.isAuthenticated() && userService.isAuhorized(post.userName)">
     <button (click)="updatePost()" mat-raised-button color="primary">Update</button>
     <button  (click)="deletePost()" mat-raised-button color="warn">Delete</button>
   </mat-card-actions>

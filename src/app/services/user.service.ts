@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
 import { API_URL } from "../../environments/environment";
 import { ILoginResponse } from '../models/login-response';
+import { ILoginData } from '../types/login-data';
 
 @Injectable({
   providedIn: 'root'
@@ -15,8 +16,8 @@ export class UserService {
     return this.http.post(`${API_URL}/users`, { userName, email, fullName, phoneNumber, password })
   }
 
-  signIn(username:string, password:string){
-    return this.http.post<ILoginResponse>(`${API_URL}/account`, {username, password});
+  signIn(data:ILoginData){
+    return this.http.post<ILoginResponse>(`${API_URL}/account`, data);
   }
 
   isAuthenticated():boolean{
