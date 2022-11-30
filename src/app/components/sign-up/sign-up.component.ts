@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import {UserService} from "../../services/user.service";
 
 @Component({
@@ -15,13 +16,43 @@ export class SignUpComponent implements OnInit {
     fullName: ''
   }
 
+  signUpFormGroup!:FormGroup;
+
   constructor(private userService:UserService) { }
 
   ngOnInit(): void {
+    this.initializeSignUpFormGroup();
   }
   onSubmit():void{
+    if(this.signUpFormGroup.invalid) return;
     this.userService.signUp(this.signUp.userName, this.signUp.email, this.signUp.fullName,this.signUp.phoneNumber, this.signUp.password).subscribe(data=>{
       console.log(data)
     })
+  }
+
+  initializeSignUpFormGroup():void{
+    this.signUpFormGroup = new FormGroup({
+      email: new FormControl("", [Validators.email,Validators.required]),
+      userName: new FormControl("", [Validators.required]),
+      phoneNumber: new FormControl("", [Validators.required]),
+      fullName:new FormControl("", [Validators.required]),
+      password: new FormControl("", [Validators.required, Validators.minLength(7)])
+    })
+  }
+
+  get password(){
+    return this.signUpFormGroup.get("password")!;
+  }
+  get phoneNumber(){
+    return this.signUpFormGroup.get("phoneNumber")!;
+  }
+  get email(){
+    return this.signUpFormGroup.get("email")!;
+  }
+  get fullName(){
+    return this.signUpFormGroup.get("fullName")!;
+  }
+  get userName(){
+    return this.signUpFormGroup.get("userName")!;
   }
 }

@@ -1,5 +1,5 @@
 <div class="w-100 d-flex h-100 align-items-center justify-content-center">
-  <form class="">
+  <form  [formGroup]="signUpFormGroup" #formDir="ngForm" (ngSubmit)="onSubmit()">
     <div class="text-center mb-3">
       <h3>Sign up</h3>
 
@@ -7,33 +7,52 @@
 
     <!-- Name input -->
     <div class="form-floating mb-4">
-      <input placeholder="###@..." name="email" [(ngModel)]="signUp.email" type="text" id="registerName" class="form-control" />
+      <input formControlName="email" placeholder="###@..." name="email"type="text" id="registerName" class="form-control" />
       <label class="form-label" for="registerName">Email</label>
+      <div class="d-flex flex-column bg-danger p-2 text-light rounded mt-2"  *ngIf="formDir.submitted && email.errors">
+        <span *ngIf="email.errors?.['required']">Email is required</span>
+        <span *ngIf="email.errors?.['email']">Email is invalid</span>
+    </div>
     </div>
     <!-- Username input -->
     <div class="form-floating mb-4">
-      <input name="userName" [(ngModel)]="signUp.userName"  type="text" id="registerUsername" class="form-control" />
+      <input formControlName="userName" name="userName" type="text" id="registerUsername" class="form-control" />
       <label class="form-label" for="registerUsername">Username</label>
+      <div class="d-flex flex-column bg-danger p-2 text-light rounded mt-2"  *ngIf="formDir.submitted && userName.errors">
+        <span *ngIf="userName.errors?.['required']">Username is required</span>
+    </div>
     </div>
 
     <!-- Email input -->
     <div class="form-floating mb-4">
-      <input name="fullName" [(ngModel)]="signUp.fullName"  type="email" id="registerEmail" class="form-control" />
+      <input formControlName="fullName" name="fullName"  type="email" id="registerEmail" class="form-control" />
       <label class="form-label" for="registerEmail">FullName</label>
+      <div class="d-flex flex-column bg-danger p-2 text-light rounded mt-2"  *ngIf="formDir.submitted && fullName.errors">
+        <span *ngIf="fullName.errors?.['required']">Fullname is required</span>
+    </div>
     </div>
 
     <!-- Password input -->
     <div class="form-floating mb-4">
-      <input name="phoneNumber" [(ngModel)]="signUp.phoneNumber"  type="text" id="phoneNumber" class="form-control" />
+      <input formControlName="phoneNumber" name="phoneNumber"  type="text" id="phoneNumber" class="form-control" />
       <label class="form-label" for="phoneNumber">Phone Number</label>
+      <div class="d-flex flex-column bg-danger p-2 text-light rounded mt-2"  *ngIf="formDir.submitted && phoneNumber.errors">
+        <span *ngIf="phoneNumber.errors?.['required']">Phone number is required</span>
+    </div>
     </div>
     <div class="form-floating mb-4">
-      <input name="password" [(ngModel)]="signUp.password"  type="password" id="registerPassword" class="form-control" />
+      <input pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[-#$^+=!*()@%&]).{8,}" name="password" formControlName="password" type="password" id="registerPassword" class="form-control" />
       <label class="form-label" for="registerPassword">Password</label>
+
+      <div class="d-flex flex-column bg-danger p-2 text-light rounded mt-2"  *ngIf="formDir.submitted && password.errors">
+          <span *ngIf="password.errors?.['required']">Password is required</span>
+          <span *ngIf="password.errors?.['minlength']">The password must have at least 8 characters</span>
+          <span *ngIf="password.errors?.['pattern']">The password must have at least<br> 1:Upper <br> 1:Lower,<br>1:Alphanumeric<br>1 special character</span>
+      </div>
     </div>
   
     <div class="d-flex align-items-center">
-      <button (click)="onSubmit()" type="submit" class="btn btn-primary btn-block mt-0 mb-0 m-4 ms-0">Sign up</button>
+      <button  type="submit" class="btn btn-primary btn-block mt-0 mb-0 m-4 ms-0">Sign up</button>
       <a class="" routerLink="../signin">Alread have an account</a>
     
     </div>
