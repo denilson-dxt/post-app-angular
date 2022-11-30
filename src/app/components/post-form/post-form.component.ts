@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output, SimpleChanges} from '@angular/core';
 import {ICreatePost} from "../../models/ICreatePost";
 import {Store} from "@ngrx/store";
 import {IAppState} from "../../store/reducers";
@@ -42,18 +42,21 @@ export class PostFormComponent implements OnInit {
     }
   }
 
+  ngOnChanges(changes:SimpleChanges){
+    this.initializePostForm();
+  }
+
   initializePostForm(){
     this.postFormGroup = new FormGroup({
-      title: new FormControl("", Validators.required),
-      content: new FormControl("", Validators.required),
-      image: new FormControl("", Validators.required)
+      title: new FormControl(this.data?.title || "", Validators.required),
+      content: new FormControl(this.data?.content || "", Validators.required),
+      image: new FormControl(this.data?.image || "", Validators.required)
     });
   }
 
   onSubmit(){
-    console.log(this.postFormGroup.value);
-    
-    this.onSubmitEvent.emit(this.postFormGroup.value);
+        
+    this.onSubmitEvent.emit({...this.postFormGroup.value, id: this.data.id});
   }
 
   closePopup(){
@@ -65,4 +68,7 @@ export class PostFormComponent implements OnInit {
     this.data = {title: "", content: "", image: ""};
   }
 
+  onActualPostChange(){
+    
+  }
 }

@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit} from '@angular/core';
 import {UserService} from "../../services/user.service";
 import {IPost} from "../../models/post";
 import {ICreatePost} from "../../models/ICreatePost";
@@ -16,6 +16,7 @@ export class ListPostsComponent implements OnInit {
   posts:IPost[] = [];
 
   actualPost:ICreatePost = {title: "", content: "", image: ""};
+  onActualPostChange = new EventEmitter<ICreatePost>();
   creatingPost:boolean = true;
 
   constructor(public userService:UserService, private store:Store<IAppState>) { }
@@ -31,7 +32,7 @@ export class ListPostsComponent implements OnInit {
   }
   closePopup(){
     this.creatingPost = true;
-    this.actualPost = {id: 0, title: "", content: "", image: ""}
+    this.actualPost = {id: 0, title: "", content: "", image: ""};
     this.displayStyle = "none";
   }
 
@@ -48,9 +49,12 @@ export class ListPostsComponent implements OnInit {
   }
 
   updatePost(post:IPost){
+    console.log(post);
+    
     this.creatingPost =false;
-    this.actualPost = {id: post.id, title:post.title, content:post.content, image: post.image};
+    this.actualPost = {...this.actualPost,id: post.id, title:post.title, content:post.content, image: post.image};
     this.displayStyle = "block";
+    this.onActualPostChange.emit(this.actualPost);
   }
 
   deletePost(id:number){

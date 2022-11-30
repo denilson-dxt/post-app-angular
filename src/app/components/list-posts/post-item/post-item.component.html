@@ -8,7 +8,7 @@
     <strong>Auhtor: </strong> {{post.userName}}
     <br>
     <strong>Creation date: </strong> {{post.creationdate | date}}
-    <p class="w-100"> <strong>Content: </strong> {{post.content}}mf lskfhskdjh fisdjk fhisud hfsdjhf</p>
+    <p class="w-100"> <strong>Content: </strong> {{post.content}}</p>
   </mat-card-content>
   <mat-card-actions *ngIf=" userService.isAuthenticated() && userService.isAuhorized(post.userName)">
     <button (click)="updatePost()" mat-raised-button color="primary">Update</button>
