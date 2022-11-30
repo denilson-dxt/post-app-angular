@@ -25,7 +25,7 @@ export class SignUpComponent implements OnInit {
   }
   onSubmit():void{
     if(this.signUpFormGroup.invalid) return;
-    this.userService.signUp(this.signUp.userName, this.signUp.email, this.signUp.fullName,this.signUp.phoneNumber, this.signUp.password).subscribe(data=>{
+    this.userService.signUp(this.signUpFormGroup.value).subscribe(data=>{
       console.log(data)
     })
   }
