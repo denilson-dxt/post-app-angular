@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import {UserService} from "../../services/user.service";
 
 @Component({
@@ -18,7 +19,7 @@ export class SignUpComponent implements OnInit {
 
   signUpFormGroup!:FormGroup;
 
-  constructor(private userService:UserService) { }
+  constructor(private userService:UserService, private router:Router) { }
 
   ngOnInit(): void {
     this.initializeSignUpFormGroup();
@@ -26,7 +27,7 @@ export class SignUpComponent implements OnInit {
   onSubmit():void{
     if(this.signUpFormGroup.invalid) return;
     this.userService.signUp(this.signUpFormGroup.value).subscribe(data=>{
-      console.log(data)
+        this.router.navigate(["/signin"]);
     })
   }
 
